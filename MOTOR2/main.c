@@ -3,15 +3,17 @@
  *
  * Created: 18/02/2020 01:35:31 م
  *  Author: mo
- */ 
+ */
 
 
-#include <avr/io.h>
+#include "Motor.h"
 
 int main(void)
 {
+Motor_Init(MOTOR_1|MOTOR_2);
     while(1)
     {
-        //TODO:: Please write your application code 
+      Motor_Start(MOTOR_1|MOTOR_2,20);
+        //TODO:: Please write your application code
     }
 }

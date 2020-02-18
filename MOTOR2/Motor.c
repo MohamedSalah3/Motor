@@ -5,11 +5,9 @@
  *  Author: mo
  */
 #include "motor.h"
-
+static uint8_t gsv_is_intialized=0;
 ERROR_STATUS Motor_Init(uint8_t Motor_Number)
 {uint8_t Ret=0;
-
-
     switch(Motor_Number)
     {
         case MOTOR_1:
@@ -47,11 +45,11 @@ return Ret;
 }
 
 ERROR_STATUS Motor_Direction(uint8_t Motor_Number, uint8_t Motor_Direction)
-{
+{uint8_t Ret=0;
 
   switch(Motor_Number)
   {
-  	case MOT_1:{
+  	case MOTOR_1:{
   	switch(Motor_Direction)
   	{
   		case MOTOR_FORWARD:
@@ -153,20 +151,82 @@ return Ret;
 
 ERROR_STATUS Motor_Start(uint8_t Motor_Number, uint8_t Mot_Speed)
 {
+  uint8_t Ret=0;
 switch (Motor_Number) {
   case MOTOR_1:
-  {
+  {gsv_is_intialized=MOTOR_1;
     Ret=Pwm_Start(PWM_CH1A,Mot_Speed,30);
     break;
   }
   case MOTOR_2:
   {
+    gsv_is_intialized=MOTOR_2;
     Ret=Pwm_Start(PWM_CH1B,Mot_Speed,30);
     break;
   }
-
+  case ( MOTOR_1 | MOTOR_2 ) :
+  {
+    gsv_is_intialized=MOTOR_1 | MOTOR_2;
+    Ret=Pwm_Start(PWM_CH1B,Mot_Speed,30);
+    break;
+  }
+  default:
+  Ret=E_NOK;
+  break;
 }
 
 
+return Ret;
+}
+ERROR_STATUS Motor_SpeedUpdate(uint8_t Motor_Number, uint8_t Speed)
+{
+  uint8_t Ret=0;
 
+switch (Motor_Number) {
+  case MOTOR_1:
+  { if(gsv_is_intialized == Motor_Number)
+    Ret=Pwm_Start(PWM_CH1A,Speed,30);
+    else{Ret=E_NOK;}
+    break;
+  }
+  case MOTOR_2:
+  {
+    if(gsv_is_intialized == Motor_Number)
+      Ret=Pwm_Start(PWM_CH1B,Speed,30);
+      else{Ret=E_NOK;}
+    break;
+  }
+  case ( MOTOR_1 | MOTOR_2 ) :
+  {
+    if(gsv_is_intialized == Motor_Number)
+        Ret=Pwm_Start(PWM_CH1B,Speed,30);
+        else{Ret=E_NOK;}
+    break;
+  }
+  default:
+  Ret=E_NOK;
+  break;
+}
+
+return Ret;
+}
+
+ERROR_STATUS Motor_Stop(uint8_t Motor_Number)
+{
+	uint8_t Ret=0;
+	switch(Motor_Number)
+	{
+		case MOTOR_1 :
+		Ret=Pwm_Stop(PWM_CH1A);
+		break;
+		case MOTOR_2:
+		Ret=Pwm_Stop(PWM_CH1B);
+		break;
+		default:
+		Ret=E_NOK;
+		break;
+	}
+	
+	
+	return Ret;
 }
