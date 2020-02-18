@@ -156,9 +156,15 @@ ERROR_STATUS Motor_Start(uint8_t Motor_Number, uint8_t Mot_Speed)
 switch (Motor_Number) {
   case MOTOR_1:
   {
-    Ret=Pwm_Start(PWM_CH1A,Mot_Speed,30)
+    Ret=Pwm_Start(PWM_CH1A,Mot_Speed,30);
     break;
   }
+  case MOTOR_2:
+  {
+    Ret=Pwm_Start(PWM_CH1B,Mot_Speed,30);
+    break;
+  }
+
 }
 
 
