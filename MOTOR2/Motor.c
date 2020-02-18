@@ -36,7 +36,7 @@ ERROR_STATUS Motor_Init(uint8_t Motor_Number)
       	/*IN4*/
         Ret=Pwm_Init(&PWM_Configuration_1A);
         Ret=Pwm_Init(&PWM_Configuration_1B);
-        Ret=DIO_init(&Motortwo);
+        Ret=DIO_init(&ALL_Motor);
 				break;
 			   }
       default:
@@ -148,4 +148,19 @@ ERROR_STATUS Motor_Direction(uint8_t Motor_Number, uint8_t Motor_Direction)
 
     }
 return Ret;
+}
+
+
+ERROR_STATUS Motor_Start(uint8_t Motor_Number, uint8_t Mot_Speed)
+{
+switch (Motor_Number) {
+  case MOTOR_1:
+  {
+    Ret=Pwm_Start(PWM_CH1A,Mot_Speed,30)
+    break;
+  }
+}
+
+
+
 }
