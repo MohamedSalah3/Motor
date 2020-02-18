@@ -67,7 +67,49 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MOTOR2.c">
+    <Compile Include="DIO.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DIO.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DIO_config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DIO_config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="motor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motor_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motor_Config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM_Comfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="registers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="std_types.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
