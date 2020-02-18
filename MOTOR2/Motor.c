@@ -141,13 +141,11 @@ ERROR_STATUS Motor_Direction(uint8_t Motor_Number, uint8_t Motor_Direction)
     break;
   	}
 
-  }
+    }
   	break;
-  	}
 
 
 
-
-
-
+    }
+return Ret;
 }

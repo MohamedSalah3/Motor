@@ -44,4 +44,5 @@
 /*********************************************************/
 extern DIO_Cfg_s Motorone;
 extern DIO_Cfg_s Motortwo;
+extern DIO_Cfg_s ALL_Motor;
 /***********************************************/
