@@ -10,12 +10,12 @@
  *				Defines  					 *
  ********************************************/
 
-#define MOTOR_1			1
-#define MOTOR_2 		2
-
-#define MOTOR_STOP 		0
-#define MOTOR_FORWARD 	1
-#define MOTOR_BACKWARD 	2
+#define MOTOR_1		       	1
+#define MOTOR_2 	       	2
+#define ALL_MOTOR         3
+#define MOTOR_STOP 	    	0
+#define MOTOR_FORWARD   	1
+#define MOTOR_BACKWARD 	  2
 
 
 
