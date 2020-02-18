@@ -26,9 +26,23 @@ ERROR_STATUS Motor_Init(uint8_t Motor_Number)
           Ret=DIO_init(&Motortwo);
           break;
 
+          case ALL_MOTOR:
+			       {
+				/*Enable PWM Bit...output*/
+				/*IN1*/
+      	/*IN2*/
+				/*ENABLE PWM BIT FOR MOTOR 2*/
+				/*IN3*/
+      	/*IN4*/
+        Ret=Pwm_Init(&PWM_Configuration_1A);
+        Ret=Pwm_Init(&PWM_Configuration_1B);
+        Ret=DIO_init(&Motortwo);
+				break;
+			   }
+      default:
+      Ret=E_NOK;
+      break;
     }
-
-
 return Ret;
 }
 
@@ -42,20 +56,20 @@ ERROR_STATUS Motor_Direction(uint8_t Motor_Number, uint8_t Motor_Direction)
   	{
   		case MOTOR_FORWARD:
   		{
-  			DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,HIGH);
-  			DIO_Write (MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
+  			Ret=DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,HIGH);
+  			Ret=DIO_Write (MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
 
   			break;
   		}
   		case MOTOR_BACKWARD:
   		{
-  			DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
-  			DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,HIGH);
+  		Ret=DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,HIGH);
+        Ret=DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
 
   			break;
   		}
-  		case MOTOR_STOP:{DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
-  		DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
+  		case MOTOR_STOP:{Ret=DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
+  		Ret=DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
   		break;}
 
   	}
@@ -67,21 +81,21 @@ ERROR_STATUS Motor_Direction(uint8_t Motor_Number, uint8_t Motor_Direction)
   		{
   			case MOTOR_FORWARD:
   			{
-  				DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
-  				DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,HIGH);
+  				Ret=DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,HIGH);
+          Ret=DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
 
   				break;
   			}
   			case MOTOR_BACKWARD:
   			{
-  				DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,HIGH);
-  				DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
+  				Ret=DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,HIGH);
+  			Ret=DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
   				break;
   			}
   			case MOTOR_STOP:
   			{
-  				DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
-  				DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
+  				Ret=DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
+  				Ret=DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
   				break;
   			}
 
@@ -95,34 +109,36 @@ ERROR_STATUS Motor_Direction(uint8_t Motor_Number, uint8_t Motor_Direction)
   {
   	case MOTOR_FORWARD:
   	{
-  		DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,HIGH);
-  		DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
+  		Ret=DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,HIGH);
+  		Ret=DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
 
-  		DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
-  		DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,HIGH);
+  	Ret=DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
+  		Ret=DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,HIGH);
 
   		break;
   	}
   	case MOTOR_BACKWARD:
   	{
 
-  		DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
-  		DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,HIGH);
-
-  		DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,HIGH);
-  		DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
+  		Ret=DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
+      Ret=DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,HIGH);
+  		Ret=DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,HIGH);
+  		Ret=DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
 
   		break;	}
   	case MOTOR_STOP:
   	{
-  			DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
-  			DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
+  			Ret=DIO_Write(MOTOR_OUT_1A_GPIO,MOTOR_OUT_1A_BIT,LOW);
+  			Ret=DIO_Write(MOTOR_OUT_2A_GPIO,MOTOR_OUT_2A_BIT,LOW);
 
-  			DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
-  			DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
+  			Ret=DIO_Write(MOTOR_OUT_1B_GPIO,MOTOR_OUT_1B_BIT,LOW);
+  			Ret=DIO_Write(MOTOR_OUT_2B_GPIO,MOTOR_OUT_2B_BIT,LOW);
 
   		break;
   	}
+    default:
+    Ret=E_NOK;
+    break;
   	}
 
   }
